@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>310</y>
+      <w>310</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>**book**
+--
+id:                     uuid
+isbn:                   int
+title:                  varchar(128)
+subtitle:               varchar(256)
+publisher:              enum
+imprint:                enum
+first_publication_date: date
+publication_date:       date
+language:               enum
+pages:                  int
+weight:                 int
+width:                  int
+height:                 int
+depth:                  int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1170</x>
+      <y>330</y>
+      <w>210</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>**author**
+--
+id:          uuid
+prefix:      varchar(16)
+first_name:  varchar(64)
+middle_name: varchar(64)
+last_name:   varchar(64)
+suffix:      varchar(16)
+gender:      enum
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>880</x>
+      <y>300</y>
+      <w>200</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>**book_author**
+--
+id:          uuid
+book_id:     uuid
+author_id:   uuid
+author_type: enum</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>900</x>
+      <y>590</y>
+      <w>120</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>**user_settings**
+--
+id: uuid
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>780</x>
+      <y>320</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=*
+</panel_attributes>
+    <additional_attributes>10.0;20.0;100.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1070</x>
+      <y>340</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=*
+</panel_attributes>
+    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>560</y>
+      <w>160</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>**book_user**
+--
+id:         uuid
+book_id:    uuid
+user_id:    uuid
+image:      bytea
+ownership:  enum
+status:     enum
+collection: enum
+series:     enum
+format:     enum
+country:    enum
+era:        enum
+genres:     enum[]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>330</y>
+      <w>80</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=*
+m2=1
+</panel_attributes>
+    <additional_attributes>60.0;270.0;10.0;270.0;10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>730</x>
+      <y>590</y>
+      <w>80</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>**user**
+--
+id: uuid
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>600</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=*
+</panel_attributes>
+    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>800</x>
+      <y>600</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;20.0;100.0;20.0</additional_attributes>
+  </element>
+</diagram>
