@@ -1,130 +1,137 @@
-do $$
-begin
-   if not exists (select 1 from pg_type where typname = 'publisher')
-   then create type if not exists publisher as enum();
-   end if;
-end $$;
+DO $$
+BEGIN
+   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'publisher')
+   THEN CREATE TYPE publisher AS ENUM();
+   END IF;
+END $$;
 
-do $$
-begin
-   if not exists (select 1 from pg_type where typname = 'imprint')
-   then create type if not exists imprint as enum();
-   end if;
-end $$;
+DO $$
+BEGIN
+   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'imprint')
+   THEN CREATE TYPE imprint AS ENUM();
+   END IF;
+END $$;
 
-do $$
-begin
-   if not exists (select 1 from pg_type where typname = 'language')
-   then create type if not exists language as enum('English');
-   end if;
-end $$;
+DO $$
+BEGIN
+   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'language')
+   THEN CREATE TYPE language AS ENUM('English');
+   END IF;
+END $$;
 
-create table if not exists book (
-    id uuid default gen_random_uuid () primary key,
-    isbn int unique not null,
-    title varchar(128),
-    subtitle varchar(256),
+CREATE TABLE IF NOT EXISTS book (
+    id UUID DEFAULT gen_random_uuid () PRIMARY KEY,
+    isbn INT UNIQUE NOT NULL,
+    title VARCHAR(128),
+    subtitle VARCHAR(256),
     publisher publisher,
     imprint imprint,
-    first_publication_date date,
-    publication_date date,
+    first_publication_date DATE,
+    publication_date DATE,
     language language,
-    pages int,
-    weight int,
-    width int,
-    height int,
-    depth int
+    pages INT,
+    weight INT,
+    width INT,
+    height INT,
+    depth INT
 );
 
-do $$
-begin
-   if not exists (select 1 from pg_type where typname = 'gender')
-   then create type if not exists gender as enum('male', 'female', 'other');
-   end if;
-end $$;
+DO $$
+BEGIN
+   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'gender')
+   THEN CREATE TYPE gender AS ENUM('male', 'female', 'other');
+   END IF;
+END $$;
 
-create table if not exists author (
-    id uuid default gen_random_uuid () primary key,
-    prefix varchar(16),
-    first_name varchar(64) not null,
-    middle_name varchar(64),
-    last_name varchar(64) not null,
-    suffix varchar(16),
+CREATE TABLE IF NOT EXISTS author (
+    id UUID DEFAULT gen_random_uuid () PRIMARY KEY,
+    prefix VARCHAR(16),
+    first_name VARCHAR(64) NOT NULL,
+    middle_name VARCHAR(64),
+    last_name VARCHAR(64) NOT NULL,
+    suffix VARCHAR(16),
     gender gender
 );
 
-do $$
-begin
-   if not exists (select 1 from pg_type where typname = 'author_type')
-   then create type if not exists author_type as enum('author', 'co-author', 'illustrator', 'translator', 'editor');
-   end if;
-end $$;
+DO $$
+BEGIN
+   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'author_type')
+   THEN CREATE TYPE author_type AS ENUM('author', 'co-author', 'illustrator', 'translator', 'editor');
+   END IF;
+END $$;
 
-create table if not exists book_author (
-    id uuid default gen_random_uuid () primary key,
-    book_id uuid references book(id) not null,
-    author_id uuid references author(id) not null,
+CREATE TABLE IF NOT EXISTS book_author (
+    id UUID DEFAULT gen_random_uuid () PRIMARY KEY,
+    book_id UUID REFERENCES book(id) NOT NULL,
+    author_id UUID REFERENCES author(id) NOT NULL,
     author_type author_type
 );
 
-create table if not exists user (
-    id uuid default gen_random_uuid () primary key
+CREATE TABLE IF NOT EXISTS users (
+    id UUID DEFAULT gen_random_uuid () PRIMARY KEY
 );
 
-do $$
-begin
-   if not exists (select 1 from pg_type where typname = 'ownership')
-   then create type if not exists ownership as enum('own', 'want', 'borrowed', 'owned');
-   end if;
-end $$;
+DO $$
+BEGIN
+   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'ownership')
+   THEN CREATE TYPE ownership AS ENUM('own', 'want', 'borrowed', 'owned');
+   END IF;
+END $$;
 
-do $$
-begin
-   if not exists (select 1 from pg_type where typname = 'status')
-   then create type if not exists status as enum('read', 'reading', 'unread', 'rereading');
-   end if;
-end $$;
+DO $$
+BEGIN
+   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'status')
+   THEN CREATE TYPE status AS ENUM('read', 'reading', 'unread', 'rereading');
+   END IF;
+END $$;
 
-do $$
-begin
-   if not exists (select 1 from pg_type where typname = 'collection')
-   then create type if not exists collection as enum();
-   end if;
-end $$;
+DO $$
+BEGIN
+   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'collection')
+   THEN CREATE TYPE collection AS ENUM();
+   END IF;
+END $$;
 
-do $$
-begin
-   if not exists (select 1 from pg_type where typname = 'series')
-   then create type if not exists series as enum();
-   end if;
-end $$;
+DO $$
+BEGIN
+   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'series')
+   THEN CREATE TYPE series AS ENUM();
+   END IF;
+END $$;
 
-do $$
-begin
-   if not exists (select 1 from pg_type where typname = 'format')
-   then create type if not exists format as enum('paperback', 'hardcover', 'flexibound', 'audiobook', 'ebook');
-   end if;
-end $$;
+DO $$
+BEGIN
+   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'format')
+   THEN CREATE TYPE FORMAT AS ENUM('paperback', 'hardcover', 'flexibound', 'audiobook', 'ebook');
+   END IF;
+END $$;
 
-do $$
-begin
-   if not exists (select 1 from pg_type where typname = 'country')
-   then create type if not exists country as enum();
-   end if;
-end $$;
+DO $$
+BEGIN
+   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'country')
+   THEN CREATE TYPE country AS ENUM();
+   END IF;
+END $$;
 
-do $$
-begin
-   if not exists (select 1 from pg_type where typname = 'era')
-   then create type if not exists era as enum();
-   end if;
-end $$;
+DO $$
+BEGIN
+   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'era')
+   THEN CREATE TYPE era AS ENUM();
+   END IF;
+END $$;
 
-create table if not exists book_user (
-    id uuid default gen_random_uuid () primary key,
-    book_id uuid references book(id) not null,
-    user_id uuid references user(id),
-    image bytea,
+DO $$
+BEGIN
+   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'genres')
+   THEN CREATE TYPE genres AS ENUM();
+   END IF;
+END $$;
+
+CREATE TABLE IF NOT EXISTS book_user (
+    id UUID DEFAULT gen_random_uuid () PRIMARY KEY,
+    book_id UUID REFERENCES book(id) NOT NULL,
+    user_id UUID REFERENCES users(id),
+    image BYTEA,
     ownership ownership,
     status status,
     collection collection,

@@ -151,7 +151,7 @@ m2=1
       <w>80</w>
       <h>60</h>
     </coordinates>
-    <panel_attributes>**user**
+    <panel_attributes>**users**
 --
 id: uuid
 ...</panel_attributes>
