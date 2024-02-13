@@ -1,9 +1,11 @@
 package vena.bookcollection.book;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.UUID;
 
+@Data
 @Entity
 @Table(name = "book")
 public class Book {
@@ -18,9 +20,6 @@ public class Book {
 
   @Column(name = "title")
   private String title;
-
-  public Book() {
-  }
 
   public Book(int isbn, String title) {
     this.isbn = isbn;
