@@ -4,9 +4,12 @@ services:
     build:
       context: .
     container_name: app
+    ports:
+      - "5005:5005"
     depends_on:
       - db
     environment:
+      - "_JAVA_OPTIONS=-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/${DB_NAME}
       - SPRING_DATASOURCE_USERNAME=${DB_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
