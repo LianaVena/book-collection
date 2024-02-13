@@ -6,6 +6,7 @@ services:
     container_name: app
     ports:
       - "5005:5005"
+      - "8081:8080"
     depends_on:
       - db
     environment:
